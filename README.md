@@ -86,6 +86,9 @@ Child-Safety-AI combines asynchronous FastAPI web architecture, SQLAlchemy persi
 
 ---
 
+### **Credit:** 
+[@Huzaifa](https://github.com/MuhammadHuzaifaG/)
+
 <img width="879" height="636" alt="11" src="https://github.com/MuhammadHuzaifaG/Child-Safety-AI/blob/main/screenshots/ch4.PNG" />
 
 ## Project Structure
