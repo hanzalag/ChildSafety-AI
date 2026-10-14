@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+/* CSS Print Styles for clean native PDF printing */
+@media print {
+    nav, footer, .no-print, button {
+        display: none !important;
+    }
+    body {
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+    .card {
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        margin-bottom: 1rem !important;
+    }
+    h2, h3, p, span, td, th {
+        color: #000000 !important;
+    }
+}
+</style>
+
+<div id="dashboard-report-content">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <div>
+            <h2>📊 Non-Surveillant Parent & Educator Dashboard</h2>
+            <p style="color: var(--text-muted); margin-top: 0.5rem;">Real-time digital wellness monitoring, threat mitigation breakdown, and audit reporting.</p>
+        </div>
+        <div class="no-print" style="display: flex; gap: 0.75rem; align-items: center;">
+            <span style="font-size: 0.8rem; color: var(--success); display: flex; align-items: center; gap: 0.3rem;">
+                <span style="height: 8px; width: 8px; background-color: var(--success); border-radius: 50%; display: inline-block;"></span> Live Auto-Sync
+            </span>
+            <button onclick="window.print()" class="btn btn-accent" style="color: var(--bg-dark); font-size: 0.85rem; padding: 0.5rem 1rem;">🖨️ Print / Save PDF</button>
+            <button onclick="exportDashboardCSV()" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.5rem 1rem;">📊 Export CSV</button>
+        </div>
+    </div>
+
+    <!-- KPI Metric Cards -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+        <div class="card" style="padding: 1.5rem; text-align: center;">
+            <p style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase;">Total Scans</p>
+            <h3 id="stat-scanned" style="font-size: 2.25rem; margin-top: 0.5rem; color: var(--accent);">0</h3>
+        </div>
+        <div class="card" style="padding: 1.5rem; text-align: center;">
+            <p style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase;">Threats Mitigated</p>
+            <h3 id="stat-threats" style="font-size: 2.25rem; margin-top: 0.5rem; color: var(--danger);">0</h3>
+        </div>
+        <div class="card" style="padding: 1.5rem; text-align: center;">
+            <p style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase;">Companion Audits</p>
+            <h3 id="stat-audits" style="font-size: 2.25rem; margin-top: 0.5rem; color: var(--warning);">0</h3>
+        </div>
+        <div class="card" style="padding: 1.5rem; text-align: center;">
+            <p style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase;">Safety Score</p>
+            <h3 id="stat-safety" style="font-size: 2.25rem; margin-top: 0.5rem; color: var(--success);">100%</h3>
+        </div>
+    </div>
+
+    <!-- Interactive Analytics Chart Section -->
+    <div class="card" style="margin-bottom: 2rem; padding: 1.5rem;">
+        <h3 style="margin-bottom: 1rem;">📈 Safety Insight & Threat Categorization</h3>
+        <div style="max-height: 320px; position: relative;">
+            <canvas id="safetyInsightsChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Recent Logs Table -->
+    <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <h3>Recent Moderation Logs</h3>
+            <button onclick="loadDashboardMetrics()" class="btn btn-primary no-print" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">Refresh Now</button>
+        </div>
+        <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                <thead>
+                    <tr style="border-bottom: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.85rem;">
+                        <th style="padding: 0.75rem;">Message Snippet</th>
+                        <th style="padding: 0.75rem;">Status / Threat Category</th>
+                        <th style="padding: 0.75rem;">Date & Time</th>
+                    </tr>
+                </thead>
+                <tbody id="recent-moderations-body">
+                    <tr><td colspan="3" style="text-align: center; color: var(--text-muted); padding: 1rem;">Loading moderation history...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        loadDashboardMetrics();
+        setInterval(loadDashboardMetrics, 5000);
+    });
+</script>
+{% endblock %}

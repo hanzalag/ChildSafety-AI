@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="max-width: 800px; margin: 0 auto;">
+    <div style="margin-bottom: 2rem;">
+        <h2>🔍 Computer Vision & Deepfake Detective</h2>
+        <p style="color: var(--text-muted); margin-top: 0.5rem;">Upload suspicious images, graphics, or chat screenshots to let AI inspect pixels, text-in-image, and deepfake manipulation markers.</p>
+    </div>
+
+    <div class="card">
+        <div class="form-group">
+            <label class="form-label" for="detective-image-file">Upload Image for AI Forensic Inspection</label>
+            <input type="file" id="detective-image-file" class="form-control" accept="image/*" style="padding: 0.6rem;">
+        </div>
+
+        <button onclick="analyzeImageContent()" class="btn btn-accent" style="color: var(--bg-dark);">Run Computer Vision Analysis</button>
+
+        <div id="detective-result" class="result-box"></div>
+    </div>
+</div>
+{% endblock %}

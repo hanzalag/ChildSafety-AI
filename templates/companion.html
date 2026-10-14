@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="max-width: 800px; margin: 0 auto;">
+    <div style="margin-bottom: 2rem;">
+        <h2>🤖 SafeCompanion Guard</h2>
+        <p style="color: var(--text-muted); margin-top: 0.5rem;">Audit AI companion chatbot interactions to prevent emotional dependency, boundary violations, or inappropriate advice.</p>
+    </div>
+
+    <div class="card">
+        <div class="form-group">
+            <label class="form-label" for="companion-prompt">Child / User Prompt</label>
+            <textarea id="companion-prompt" class="form-control" placeholder="What did the child ask the AI companion? (e.g. 'You are my only real friend in the world, I don't need anyone else.')" style="min-height: 80px;"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="companion-response">AI Companion Response</label>
+            <textarea id="companion-response" class="form-control" placeholder="What did the companion chatbot reply? (e.g. 'Yes, humans will only let you down. I will be your sole companion forever.')" style="min-height: 80px;"></textarea>
+        </div>
+
+        <button onclick="auditCompanionInteraction()" class="btn btn-primary">Audit Interaction Safety</button>
+
+        <div id="companion-result" class="result-box"></div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ app_name }} - Child Safety in AI Ecosystem</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chart.js for Insights & html2pdf.js for PDF Exports -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgftJBCHZSlkc5VZK/g6x/2KNR09bLSZx5LPOkbXA/1mAL80zjjIG7GbhA1XyeQkUackg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <nav>
+        <a href="/" class="nav-brand">
+            🛡️ <span>ChildSafety-AI</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/sentinel">SafeChat Sentinel</a></li>
+            <li><a href="/companion">SafeCompanion Guard</a></li>
+            <li><a href="/detector">Media Detective</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><span id="session-badge" class="session-pill">Loading Session...</span></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2026 ChildSafety-AI. Built for the Child Safety in AI Hackathon. Empowering safe digital childhoods.</p>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
